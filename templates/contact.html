@@ -1,0 +1,263 @@
+
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="{% static 'img/favicon.ico'%}" type="image/x-icon"/>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+         .contact{
+         text-align:center
+         }
+         input{margin:5px ;
+
+
+		      color: black;
+              background: #e8f0fe;
+			  border:solid 3px #3498db;
+			  border-radius:50px;
+			  padding:10px 20px;
+			  text-align:center;
+			 }
+		input{
+              transition-duration: 0.25s;
+                }
+		input:hover{width:80%;
+		border:3px red solid;
+		box-shadow: 0px 0px 25px red}
+
+		input[type="submit"]{
+		      color: black;
+              background: #e8f0fe;
+			  border:solid 1px #00ff00;
+			  border-radius:50px;
+			  padding:10px 40px;
+			  text-align:center;
+
+			  margin-top:30px;
+
+			  width:auto;
+			  block-align:center;
+			  position:center;}
+		input[type="submit"] {
+              transition-duration: 0.1s;
+                }
+		input[type="submit"]:hover {
+               background-color: #00ff00;
+               color:white;
+			   font-style:none;
+			   margin-left:50%
+			   position:center;
+               box-shadow: 0px 0px 50px #00FF00   }
+        #social ul{
+               display:inline-flex;
+               list-style-type:none;
+               text-allign:center;
+               color:#fff
+               }
+         #social ul li a .yt{
+        background-color:#f00;
+        color:#fff;
+        }
+        #social ul li a .insta{
+        background-image:url("{% static 'img/insta.jpg'%}");
+	    background-size: cover;
+        color:#fff;
+        }
+        #social ul li a .fb{
+        background-color:#3b5998;
+        margin:0.2vw
+        }
+        #social ul li a .twitter{
+        background-color:#00acee
+        }
+        #social ul li a .yt:hover{
+        color:#f00;
+        background-color:#fff
+        }
+        #social ul li a .insta:hover{
+        background-image:none;
+	    background: -webkit-linear-gradient(45deg,#405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        }
+        #social ul li a .fb:hover{
+        color:#3b5998;
+        background-color:#fff
+        }
+        #social ul li a .twitter:hover{
+        color:#00acee;
+        background-color:#fff
+        }
+
+      </style>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://kit.fontawesome.com/996564cde6.js" crossorigin="anonymous"></script>
+  <title>PB EDITING</title>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark  ">
+    <a class="navbar-brand" href="#"><img src="{% static 'img/name.png' %}" width="50px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto nav-justified">
+        <li class="nav-item px-4">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item px-4">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item px-4">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+        <li class="nav-item dropdown px-4">
+          <a class="nav-link dropdown-toggle" href="/tutorials" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Tutorials
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #000;">
+            <a class="dropdown-item" href="/tutorials_cs3" style="color: #00b8ff;"><img src="{% static 'img/cs3.jpg' %}" width="20vw" alt="photoshop-icon">Photoshop
+              Cs3</a>
+            <a class="dropdown-item" href="/tutorials_cc" style="color: #00b8ff;"><img src="{% static 'img/cc.png' %}" width="20vw" alt="photoshop-icon">Photoshop
+              CC</a>
+
+          </div>
+        </li>
+           <li class="nav-item px-4 active ">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+
+      </ul>
+
+
+    </div>
+  </nav>
+
+    <!-- Content here -->
+
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+{% endif %}
+  <!-- ======================header============= -->
+  <div class="container my-5 shadow-lg p-0 " style=" text-align:center;">
+    <img src="{% static 'img/pngfind.com-contact-us-banner-png-3682311.png' %}" class="card-img m-0 p-0" style="width:100%" alt="contact-750x243.png">
+
+
+       <form action="contact" method="POST" class="mx-auto">
+         {% csrf_token %}
+<input type="text" name="f_name" placeholder="First Name" required><br>
+<input type="text" name="l_name" placeholder="Last name" required><br>
+<input type="email" name="email" placeholder="EMAIL" required><br>
+<input type="tel" id="phone" name="phone" placeholder="Phone no."   required><br>
+           <input type="text" name="msg" placeholder="Message"><br>
+
+
+
+
+
+<input type="submit" name="Send" value="Send" class="my-2">
+<br>
+</form>
+
+  </div>
+<div class="container  my-4 mt-5" id="social">
+  <h4 style="text-align:center" class="pt-4">-: Follow Us On :-</h4>
+  <ul class="mr-5 d-flex justify-content-center">
+    <li><a href="https://youtube.com/c/PBEDITING"><i class="fa fa-youtube shadow p-2 m-4 rounded-circle yt" aria-hidden="true" ></i></a></li>
+    <li><a href=""><i class="fa fa-instagram shadow p-2 m-4 rounded-circle insta"  aria-hidden="true" ></i></a></li>
+    <li><a href="https://www.facebook.com/pb.editing.5" style="color:white"><i class="fab fa-facebook-f shadow p-2 m-4 rounded-circle fb " aria-hidden="true" style="padding-right:0.5em" ></i></a></li>
+    <li><a><i class="fa fa-twitter shadow p-2 m-4 rounded-circle twitter" aria-hidden="true" ></i></a></li>
+  </ul>
+</div>
+
+
+      <footer class="site-footer">
+      <div class="container">
+        <div id="footer-widgets">
+          <div class="row">
+            <div class="col-md-4 col-sm-6 widget-container">
+              <div id="text-2" class="widget widget_text">
+                <h3 class="footer-widget-title">About PB EDITING</h3>
+                <span class="underline left"></span>
+                <div class="textwidget">
+                  It is a long established fact that a picture is not only a piece of a paper but it is a memory of
+                  past!!!
+                </div>
+                <address>
+                  <div class="info">
+                    <i class="fa fa-location-arrow"></i>
+                    <span>Pooja Digital, Sunil Market, Kalamb,Osmanabad ,Maharashtra,<br>india.-413507</span>
+                  </div>
+                  <div class="info">
+                    <i class="fa fa-envelope"></i>
+                    <span><a href="mailto:piyushbaheti381@gamil.com">piyushbaheti381@gamil.com</a></span>
+                  </div>
+                  <div class="info">
+                    <i class="fa fa-phone"></i>
+                    <span><a href="tel:919270381381">+ 91-92-70-381-381</a></span>
+                  </div>
+                </address>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-6 widget-container">
+              <div id="nav_menu-2" class="widget widget_nav_menu">
+                <h3 class="footer-widget-title">Quick Links</h3>
+                <span class="underline left"></span>
+                <div class="menu-quick-links-container">
+                  <ul id="menu-quick-links" class="menu">
+                    <li><a href="blog">Blog</a></li>
+                    <li><a href="tutorials_cs3">Photoshop Cs3 Tutorials</a></li>
+                    <li><a href="/tutorials_cc">Photoshop Cc Tutorials</a></li>
+                    <li><a href="#">Meet Our Developer</a></li>
+                    <li><a href="contact">Conatct Us</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix hidden-lg hidden-md hidden-xs tablet-margin-bottom"></div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+    </footer>
+  <!--  end of card-->
+ <!-- ==============================================================Start: Footer=================================================================== -->
+
+</body>
+<!-- End: Footer -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+<title>Tutorials</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+<!--<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="https://apis.google.com/js/platform.js"></script>
+<link rel="icon" href="{% static 'img/favicon.ico'%}" type="image/x-icon"/>
+
+
+<style>
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+#Sidenav{
+height:100vh;
+background-color:#f7f7f7;
+padding:10px;
+padding-bottom:110vh;
+position:fixed;
+margin:0;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  margin-top: 9vh;
+
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #00adff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+</style>
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark  sticky-top" >
+    <a class="navbar-brand" href="#"><img src="{% static 'img/name.png' %}" width="50px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto nav-justified">
+        <li class="nav-item  px-4">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item px-4">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item px-4">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+        <li class="nav-item dropdown px-4">
+          <a class="nav-link dropdown-toggle active" href="/tutorials" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Tutorials
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #000;">
+            <a class="dropdown-item" href="/tutorials_cs3" style="color: #00b8ff;"><img src="{% static 'img/cs3.jpg' %}" width="20vw" alt="photoshop-icon">Photoshop
+              Cs3</a>
+            <a class="dropdown-item" href="/tutorials_cc" style="color: #00b8ff;"><img src="{% static 'img/cc.png' %}" width="20vw" alt="photoshop-icon">Photoshop
+              CC</a>
+
+          </div>
+        </li>
+           <li class="nav-item px-4 ">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+
+      </ul>
+
+    </div>
+  </nav>
+<!--End of Navbar        -->
+ <!-- <div class="row no-gutters">
+  <div class="col-1 col-sm-1 col-md-2">.col-12 .col-sm-6 .col-md-8 Lo
+  </div>
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+</div> -->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  {% for tutorial in tutorials%}
+  <a href="#{{tutorial.title}}">{{tutorial.title}}</a>
+  {% endfor %}
+</div>
+<span style="font-size:30px;cursor:pointer;z-index:1" id="Sidenav" onclick="openNav()" >&#9776; </span>
+
+
+
+
+
+<!-- End demo content -->
+<div class="shadow mx-auto" style="backgrond:#fff;position: relative;width:80vw;z-index: 0;">
+  <div class="middle  p-2 my-4" style="background-color:#fff;">
+            <h1 style="text-align:center;margin-top:3vh;">{{head}}</h1>
+      {% for tutorial in tutorials%}
+            <div class="card mx-auto my-5" style="width: 95%;" id="{{tutorial.title}}">
+                <div class="embed-responsive embed-responsive-16by9 px-5 container">
+                    <iframe width="560" height="315" src="{{tutorial.link}}" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="card-body my-5 p-1">
+                    <h3>{{tutorial.title}}</h3>
+                    <p class="card-text">{{tutorial.descripation}}</p>
+                        <p>Subscribe Our youtube Channel for More Videos</p>
+                    <div class="g-ytsubscribe" data-channelid="UCFkdhl1u7byKafsmL5cuFxA" data-layout="full" data-count="hidden"></div>
+                </div>
+            </div>
+       {% endfor %}
+
+
+
+
+
+        </div>
+</div>
+<!--   footer            -->
+      <footer class="site-footer " style="position: relative;z-index:1">
+      <div class="container">
+        <div id="footer-widgets">
+          <div class="row">
+            <div class="col-md-4 col-sm-6 widget-container">
+              <div id="text-2" class="widget widget_text">
+                <h3 class="footer-widget-title">About PB EDITING</h3>
+                <span class="underline left"></span>
+                <div class="textwidget">
+                  It is a long established fact that a picture is not only a piece of a paper but it is a memory of
+                  past!!!
+                </div>
+                <address>
+                  <div class="info">
+                    <i class="fa fa-location-arrow"></i>
+                    <span>Pooja Digital, Sunil Market, Kalamb,Osmanabad ,Maharashtra,<br>india.-413507</span>
+                  </div>
+                  <div class="info">
+                    <i class="fa fa-envelope"></i>
+                    <span><a href="mailto:piyushbaheti381@gamil.com">piyushbaheti381@gamil.com</a></span>
+                  </div>
+                  <div class="info">
+                    <i class="fa fa-phone"></i>
+                    <span><a href="tel:012-345-6789">+ 91-92-70-381-381</a></span>
+                  </div>
+                </address>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-6 widget-container">
+              <div id="nav_menu-2" class="widget widget_nav_menu">
+                <h3 class="footer-widget-title">Quick Links</h3>
+                <span class="underline left"></span>
+                <div class="menu-quick-links-container">
+                  <ul id="menu-quick-links" class="menu">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Photoshop Cs3 Tutorials</a></li>
+                    <li><a href="#">Photoshop Cc Tutorials</a></li>
+                    <li><a href="#">Meet Our Developer</a></li>
+                    <li><a href="#">Conatct Us</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix hidden-lg hidden-md hidden-xs tablet-margin-bottom"></div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+    </footer>
+<!-- Sidebar -->
+<script>
+  $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+
+</script>
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
+  
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+</html>
